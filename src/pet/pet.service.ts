@@ -10,15 +10,21 @@ export class PetService {
     private petsRepository: Repository<Pet>,
   ) {}
 
-  findAll(): Promise<Pet[]> {
+  findAllPets(): Promise<Pet[]> {
     return this.petsRepository.find();
   }
 
-  findOne(id: string): Promise<Pet> {
+  findOnePet(id: string): Promise<Pet> {
     return this.petsRepository.findOne(id);
   }
 
-  async remove(id: string): Promise<void> {
+  async addPet(name: string, ownerName: string, breed: string) {
+    const pet = new Pet(name, ownerName, breed);
+    const result = await this.petsRepository.insert(pet);
+    return result;
+  }
+
+  async removePet(id: string): Promise<void> {
     await this.petsRepository.delete(id);
   }
 }
