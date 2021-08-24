@@ -1,7 +1,10 @@
 {
   "type": "sqlite",
   "database": "data/dev.sqlite",
-  "entities": ["dist/entities/**/*.entity.js"],
+  "entities": ["dist/src/entities/**/*.entity.js"],
   "migrations": ["dist/migrations/**/*.js"],
+  "cli": {
+    "migrationsDir": "migrations"
+  },
   "logging": true
 }
