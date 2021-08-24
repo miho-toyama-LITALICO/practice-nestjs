@@ -18,8 +18,8 @@ export class PetService {
     return this.petsRepository.findOne(id);
   }
 
-  async addPet(name: string, ownerName: string, breed: string) {
-    const pet = new Pet(name, ownerName, breed);
+  async addPet(name: string, breed: string) {
+    const pet = new Pet(name, breed);
     const result = await this.petsRepository.insert(pet);
     return result;
   }

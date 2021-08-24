@@ -11,7 +11,7 @@ export class PetController {
   }
 
   @Post()
-  addPet(@Query() query: { name: string; ownerName: string; breed: string }) {
-    return this.service.addPet(query.name, query.ownerName, query.breed);
+  addPet(@Query() query: { name: string; breed: string }) {
+    return this.service.addPet(query.name, query.breed);
   }
 }
