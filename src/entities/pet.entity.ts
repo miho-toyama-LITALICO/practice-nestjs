@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Owner } from './owner.entity';
 
 @Entity()
 export class Pet {
@@ -9,14 +10,13 @@ export class Pet {
   name: string;
 
   @Column({ length: 100 })
-  ownerName: string;
-
-  @Column({ length: 100 })
   breed: string;
 
-  constructor(name: string, ownerName: string, breed: string) {
+  constructor(name: string, breed: string) {
     this.name = name;
-    this.ownerName = ownerName;
     this.breed = breed;
   }
+
+  @ManyToOne(() => Owner, (owner) => owner.pets)
+  owner: Owner;
 }
