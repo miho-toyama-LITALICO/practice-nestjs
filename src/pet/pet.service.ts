@@ -11,11 +11,11 @@ export class PetService {
   ) {}
 
   findAllPets(): Promise<Pet[]> {
-    return this.petsRepository.find();
+    return this.petsRepository.find({ relations: ['owner'] });
   }
 
   findOnePet(id: string): Promise<Pet> {
-    return this.petsRepository.findOne(id);
+    return this.petsRepository.findOne(id, { relations: ['owner'] });
   }
 
   async addPet(name: string, breed: string) {
