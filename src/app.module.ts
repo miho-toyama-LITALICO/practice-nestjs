@@ -4,9 +4,10 @@ import { Connection } from 'typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PetModule } from './pet/pet.module';
+import { OwnerModule } from './owner/owner.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), PetModule],
+  imports: [TypeOrmModule.forRoot(), PetModule, OwnerModule],
   controllers: [AppController],
   providers: [AppService],
 })
