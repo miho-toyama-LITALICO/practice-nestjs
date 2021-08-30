@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Pet } from '../entities/pet.entity';
+import { PetDto } from 'dto/pet.dto';
 
 @Injectable()
 export class PetService {
@@ -18,10 +19,14 @@ export class PetService {
     return this.petsRepository.findOne(id, { relations: ['owner'] });
   }
 
-  async addPet(name: string, breed: string) {
-    const pet = new Pet(name, breed);
-    const result = await this.petsRepository.insert(pet);
-    return result;
+  async addPet(petDto: PetDto): Promise<Pet> {
+    const { name, breed, owner } = petDto;
+    const pet = new Pet();
+    pet.name = name;
+    pet.breed = breed;
+    pet.owner = owner; // 不具合：ownerのデータが取得できていない・保存されない
+    await this.petsRepository.save(pet);
+    return pet;
   }
 
   async removePet(id: string): Promise<void> {

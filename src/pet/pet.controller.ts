@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Req, Query } from '@nestjs/common';
 import { PetService } from './pet.service';
+import { PetDto } from 'dto/pet.dto';
 
 @Controller('pet')
 export class PetController {
@@ -11,7 +12,7 @@ export class PetController {
   }
 
   @Post()
-  addPet(@Query() query: { name: string; breed: string }) {
-    return this.service.addPet(query.name, query.breed);
+  addPet(@Query() petDto: PetDto) {
+    return this.service.addPet(petDto);
   }
 }
