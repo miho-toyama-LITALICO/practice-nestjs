@@ -18,10 +18,10 @@ export class OwnerService {
     return this.ownersRepository.findOne(id, { relations: ['pets'] });
   }
 
-  async addOwner(name: string) {
+  async addOwner(name: string): Promise<Owner> {
     const owner = new Owner(name);
-    const result = await this.ownersRepository.insert(owner);
-    return result;
+    await this.ownersRepository.insert(owner);
+    return owner;
   }
 
   async removeOwner(id: string): Promise<void> {
