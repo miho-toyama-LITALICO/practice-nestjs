@@ -23,9 +23,7 @@ export class PetService {
 
   async addPet(petDto: PetDto, ownerId: string): Promise<Pet> {
     const { name, breed, owner } = petDto;
-    const pet = new Pet();
-    pet.name = name;
-    pet.breed = breed;
+    const pet = new Pet(name, breed);
     pet.ownerId = ownerId;
     await this.petsRepository.save(pet);
     return pet;

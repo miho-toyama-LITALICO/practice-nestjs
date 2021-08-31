@@ -12,15 +12,13 @@ export class Pet {
   @Column({ length: 100 })
   breed: string;
 
-  /*
+  @Column('uuid')
+  ownerId: string;
+
   constructor(name: string, breed: string) {
     this.name = name;
     this.breed = breed;
   }
-  */
-
-  @Column('uuid')
-  ownerId: string;
 
   @ManyToOne(() => Owner, (owner) => owner.pets)
   owner: Owner;
