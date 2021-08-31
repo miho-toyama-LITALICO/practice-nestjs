@@ -19,6 +19,9 @@ export class Pet {
   }
   */
 
+  @Column('uuid')
+  ownerId: string;
+
   @ManyToOne(() => Owner, (owner) => owner.pets)
   owner: Owner;
 }
