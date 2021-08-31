@@ -1,7 +1,7 @@
 import { OwnerDto } from './owner.dto';
 
 export class PetDto {
-  id: number;
+  id: string;
   name: string;
   breed: string;
   owner: OwnerDto;

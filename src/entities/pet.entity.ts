@@ -4,7 +4,7 @@ import { Owner } from './owner.entity';
 @Entity()
 export class Pet {
   @PrimaryGeneratedColumn('uuid')
-  readonly id: number;
+  readonly id: string;
 
   @Column({ length: 100 })
   name: string;
