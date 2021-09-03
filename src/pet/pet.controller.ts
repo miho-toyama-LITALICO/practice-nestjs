@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Delete, Body, Query } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Body, Param } from '@nestjs/common';
 import { PetService } from './pet.service';
 import { PetDto } from 'dto/pet.dto';
 import { OwnerService } from 'src/owner/owner.service';
@@ -15,8 +15,8 @@ export class PetController {
     return this.service.findAllPets();
   }
 
-  @Get()
-  findOnePet(@Query() id: string) {
+  @Get(':id')
+  findOnePet(@Param('id') id: string) {
     return this.service.findOnePet(id);
   }
 
@@ -26,8 +26,8 @@ export class PetController {
     return this.service.addPet(petDto, owner.id);
   }
 
-  @Delete()
-  removePet(@Query() id: string) {
+  @Delete(':id')
+  removePet(@Param('id') id: string) {
     return this.service.removePet(id);
   }
 }
