@@ -29,6 +29,16 @@ export class PetService {
     return pet;
   }
 
+  async updatePet(id: string, petDto: PetDto, ownerId: string): Promise<Pet> {
+    const pet = await this.petsRepository.findOne(id, { relations: ['owner'] });
+    const { name, breed, owner } = petDto;
+    pet.name = name;
+    pet.breed = breed;
+    pet.ownerId = ownerId;
+    await this.petsRepository.update(id, pet);
+    return pet;
+  }
+
   async removePet(id: string): Promise<void> {
     await this.petsRepository.delete(id);
   }
