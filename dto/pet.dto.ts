@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsString,
+  IsNotEmptyObject,
+  ValidateNested,
+} from 'class-validator';
+import { Type } from 'class-transformer';
 import { OwnerDto } from './owner.dto';
 
 export class PetDto {
@@ -12,6 +18,8 @@ export class PetDto {
   @IsString()
   breed: string;
 
-  @IsNotEmpty()
+  @IsNotEmptyObject()
+  @ValidateNested()
+  @Type(() => OwnerDto)
   owner: OwnerDto;
 }
